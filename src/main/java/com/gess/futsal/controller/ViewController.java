@@ -17,4 +17,8 @@ public class ViewController {
         return "forms";
     }
 
+    @GetMapping("style.css")
+    public String showCss(){
+        return "index";
+    }
 }

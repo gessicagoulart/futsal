@@ -1,0 +1,7 @@
+table, th {
+    background-color: blue;
+    border: blueviolet;
+}
+#profile-table{
+    margin-left: 30%;
+}
