@@ -1,4 +1,4 @@
-#profile-table, tr, td{
+#profile-table, #profileForm{
     align-content: space-between;
     margin-outside: 10%;
 }

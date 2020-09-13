@@ -15,12 +15,9 @@ public class ViewController {
     @GetMapping("/forms")
     public String showForm(){
         return "forms";
-    }}
-
-/*
-    @GetMapping("style.css")
-    public String showCss(){
-        return "index";
     }
-}
-*/
+
+    @GetMapping("/edit")
+    public String showEdit(){
+        return "edit";
+    }}

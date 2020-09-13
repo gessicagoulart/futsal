@@ -8,22 +8,27 @@ function showProfiles(){
     "<td>" + element.height + "</td>" +
     "<td>" + element.weight + "</td>" +
     "<td>" + element.age +
-                "</td> <td><button type=\"button\" class=\"btn btn-secondary\">Edit</button></td>" +
-                "<td><button type=\"button\" class=\"btn btn-danger\" onclick='deleteProfile()'>Delete</button>" +
+                "</td> <td><button type=\"button\" class=\"btn btn-secondary\" onclick='window.location.href = \"/edit\"'>Edit</button></td>" +
+                "<td><button type=\"button\" class=\"btn btn-danger\" onclick='deleteProfile(" + element.id + ")'>Delete</button>" +
                 "</td></tr>").appendTo('#profile-table');
 });
 })
 }
 
-function deleteProfile(){
+function updateProfile(){
 
+
+
+}
+
+function deleteProfile(id){
+        console.log(id);
     $.ajax({
-        url: 'http://localhost:8080/addProfile',
-        type: 'POST',
-        data: JSON.stringify(mapped),
+        url: 'http://localhost:8080/delete/' + id,
+        type: 'DELETE',
         contentType: 'application/json',
         dataType: 'json',
-        success: console.log(str) ,
+        success: window.location.href = '/index',
         error: (function (xhr, textStatus, errorThrown){
             alert('Error! Status = ' + xhr.status);
         })
@@ -44,13 +49,15 @@ function deleteProfile(){
         };
         let mapped = mapToObject(str);
 
+        document.getElementById('profileForm').required = true;
+
         $.ajax({
             url: 'http://localhost:8080/addProfile',
             type: 'POST',
             data: JSON.stringify(mapped),
             contentType: 'application/json',
             dataType: 'json',
-            success: console.log(str) ,
+            success: window.location.href = '/index',
             error: (function (xhr, textStatus, errorThrown){
                 alert('Error! Status = ' + xhr.status);
             })
