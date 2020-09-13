@@ -8,9 +8,27 @@ function showProfiles(){
     "<td>" + element.height + "</td>" +
     "<td>" + element.weight + "</td>" +
     "<td>" + element.age +
-                "</td> <td><button type=\"button\" class=\"btn btn-secondary\">Edit</button></td><td><button type=\"button\" class=\"btn btn-danger\">Delete</button></td></tr>").appendTo('#profile-table');
+                "</td> <td><button type=\"button\" class=\"btn btn-secondary\">Edit</button></td>" +
+                "<td><button type=\"button\" class=\"btn btn-danger\" onclick='deleteProfile()'>Delete</button>" +
+                "</td></tr>").appendTo('#profile-table');
 });
 })
+}
+
+function deleteProfile(){
+
+    $.ajax({
+        url: 'http://localhost:8080/addProfile',
+        type: 'POST',
+        data: JSON.stringify(mapped),
+        contentType: 'application/json',
+        dataType: 'json',
+        success: console.log(str) ,
+        error: (function (xhr, textStatus, errorThrown){
+            alert('Error! Status = ' + xhr.status);
+        })
+    });
+
 }
 
     function submitForm(){

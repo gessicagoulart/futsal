@@ -1,0 +1,12 @@
+#profile-table, tr, td{
+    align-content: space-between;
+    margin-outside: 10%;
+}
+button{
+    margin-right: 10%;
+}
+span{
+    float: right;
+}
+
+
