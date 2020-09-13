@@ -1,5 +1,4 @@
-#profile-table, #profileForm{
-    align-content: space-between;
+form{
     margin-outside: 10%;
 }
 button{
