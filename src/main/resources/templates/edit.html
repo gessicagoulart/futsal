@@ -1,27 +1,29 @@
 <!DOCTYPE>
 <html>
-<title>Hello</title>
-<h1>Editing Profile:</h1>
-
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="js/main.js"></script>
-    <title>Update</title>
+    <title>Futsal</title>
 </head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/index" >Update</a>
+    </div>
+</nav>
 <body>
 <form id="editForm">
     <div class="form-group row">
         <label for="inputId" class="col-sm-2 col-form-label">Id</label>
         <div class="col-sm-10">
-            <input type="number" name="id" class="form-control" id="inputId">
+            <input type="number" name="id" class="form-control" id="inputId" placeholder="submitForm()">
         </div>
     </div>
     <div class="form-group row">
         <label for="inputName" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
-            <input type="text" name="name" class="form-control" id="inputName">
+            <input type="text" name="name" class="form-control" id="inputName" required="true">
         </div>
     </div>
     <div class="form-group row">

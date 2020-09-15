@@ -75,8 +75,11 @@ function deleteProfile(id){
         };
         let mapped = mapToObject(str);
 
-        let required = $('#inputName,#inputHeight,#inputWeight,#inputAge').filter('[required]:empty');
-        if(required.size() <= 0) {
+      let values = Object.values(mapped);
+
+        if(values.includes('') || values.includes(NaN)){
+            alert('Shiiiiit');
+        }else {
             $.ajax({
                 url: 'http://localhost:8080/addProfile',
                 type: 'POST',
@@ -84,12 +87,9 @@ function deleteProfile(id){
                 contentType: 'application/json',
                 dataType: 'json',
                 success: window.location.href = '/index',
-                error: (function (xhr, textStatus, errorThrown){
+                error: (function (xhr, textStatus, errorThrown) {
                     alert('Error! Status = ' + xhr.status);
                 })
             });
-        }
-        else {
-            alert('Please fill all the fields before saving a new Profile!');
         }
     }
