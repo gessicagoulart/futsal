@@ -8,17 +8,14 @@ function showProfiles(){
     "<td>" + element.height + "</td>" +
     "<td>" + element.weight + "</td>" +
     "<td>" + element.age +
-                "</td> <td><button type=\"button\" class=\"btn btn-secondary\" onclick='updateProfile(" + element.id + ")'>Edit</button></td>" +
+                "</td> <td><button type=\"button\" class=\"btn btn-secondary\" onclick=\"window.location.href='/edit'\">Edit</button></td>" +
                 "<td><button type=\"button\" class=\"btn btn-danger\" onclick='deleteProfile(" + element.id + ")'>Delete</button>" +
                 "</td></tr>").appendTo('#profile-table');
 });
 })
 }
 
-function updateProfile(id){
-    window.location.href='/edit';
-    console.log(id);
-
+function updateProfile(){
     let str = $("#editForm");
 
     const mapToObject = (obj) => {
@@ -26,16 +23,16 @@ function updateProfile(id){
         obj.serializeArray().forEach((field) => {
             mapped[field.name] = field.value;
         });
-
         return mapped;
     };
     let mapped = mapToObject(str);
-
-    document.getElementById('profileForm').required = true;
+/*    if($('editForm')){
+       return  console.log(JSON.stringify(mapped));
+    }*/
 
     $.ajax({
         url: 'http://localhost:8080/update',
-        type: 'PUT',
+        type: 'POST',
         data: JSON.stringify(mapped),
         contentType: 'application/json',
         dataType: 'json',
@@ -48,18 +45,20 @@ function updateProfile(id){
 }
 
 function deleteProfile(id){
-        console.log(id);
+        let deleted = id;
     $.ajax({
         url: 'http://localhost:8080/delete/' + id,
         type: 'DELETE',
         contentType: 'application/json',
         dataType: 'json',
-        success: window.location.href = '/index',
-        error: (function (xhr, textStatus, errorThrown){
-            alert('Error! Status = ' + xhr.status);
-        })
+        success: function (){
+            location.reload();
+            alert('Id number ' + deleted + ' deleted');
+        }(),
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+        }
     });
-
 }
 
     function submitForm(){
@@ -70,7 +69,6 @@ function deleteProfile(id){
             obj.serializeArray().forEach((field) => {
                 mapped[field.name] = field.value;
             });
-
             return mapped;
         };
         let mapped = mapToObject(str);
