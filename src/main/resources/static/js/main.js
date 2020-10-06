@@ -1,6 +1,3 @@
-$(document).ready(function (){
-    listeners();
-    });
 
 function showProfiles(){
     fetch("http://localhost:8080/profiles")
@@ -18,24 +15,21 @@ function showProfiles(){
 });
 })
 }
-let listeners = function () {
-       if($('#editBtn') !== null) {
-           addEventListener("click", () => window.location.href = '/edit');
-       }
-};
 function editForm(id){
-    console.log('Redirecting to edit page');
-    fetch("http://localhost:8080/profileid/" + id)
+    window.location.href = '/edit';
+
+    console.log('Redirecting to edit page. Id is ' + id);
+    $('inputId').value=5;
+
+/*    fetch("http://localhost:8080/profileid/" + id)
         .then(response => response.json())
-        .then(function(element){
-                $("<tr><td>" + element.id + "</td>"+
-                    "<td>" + element.name + "</td>" +
-                    "<td>" + element.height + "</td>" +
-                    "<td>" + element.weight + "</td>" +
-                    "<td>" + element.age + "</td></tr>").appendTo('#editForm');
-        });
+        .then(function (data){
+            $('#inputId').value= data.id;
+        });*/
+
 }
 function updateProfile(){
+
     const mapToObject = (obj) => {
         let mapped = {};
         obj.serializeArray().forEach((field) => {
@@ -48,11 +42,11 @@ function updateProfile(){
     console.log(mapped);
     $.ajax({
         url: 'http://localhost:8080/update',
-        type: 'POST',
+        type: 'PUT',
         data: JSON.stringify(mapped),
         contentType: 'application/json',
         dataType: 'json',
-        success: console.log(JSON.stringify(mapped)),
+        success: window.location.href = '/index',
         error: (function (xhr, textStatus, errorThrown){
             alert('Error! Status = ' + xhr.status);
         })
